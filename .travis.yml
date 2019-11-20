@@ -6,6 +6,8 @@ android:
     - build-tools-29.0.2
     - android-29
     - extra-android-m2repository
+    - android-22
+    - sys-img-armeabi-v7a-android-22
 
 jdk:
   - oraclejdk8
