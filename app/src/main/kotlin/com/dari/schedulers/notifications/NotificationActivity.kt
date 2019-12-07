@@ -29,7 +29,7 @@ class NotificationActivity : AppCompatActivity() {
 
         notificationsProvider.buildNotification(
             this,
-            NOTIFICATION_CHANNELS[ChannelID.PRIMARY]!!,
+            NOTIFICATION_CHANNELS[ChannelID.TEST]!!,
             NOTIFICATION_ID,
             "Notification Check",
             5,
