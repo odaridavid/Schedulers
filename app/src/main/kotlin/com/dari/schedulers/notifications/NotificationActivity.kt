@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import com.dari.schedulers.R
 import com.google.android.material.button.MaterialButton
+import kotlinx.android.synthetic.main.activity_notification.*
 
 class NotificationActivity : AppCompatActivity() {
 
@@ -16,12 +17,9 @@ class NotificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
-
-        findViewById<MaterialButton>(R.id.send_notification_button).apply {
-            setOnClickListener { initNotifications()}
+        send_notification_button.setOnClickListener {
+            initNotifications()
         }
-
-
     }
 
 
