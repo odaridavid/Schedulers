@@ -62,9 +62,9 @@ class NotificationsProvider {
 
         return NotificationChannel(channelID, channelName, importanceLvl)
             .apply {
-                enableLights(true)
-                setLightColor(Color.RED)
-                enableVibration(true)
+                enableLights(enableLights)
+                setLightColor(lightColor)
+                enableVibration(enableVibration)
                 setDescription(description)
             }
     }
@@ -72,9 +72,9 @@ class NotificationsProvider {
 }
 
 enum class ChannelID(name: String) {
-    PRIMARY("primary")
+    TEST("test")
 }
 
 val NOTIFICATION_CHANNELS: Map<ChannelID, String> by lazy {
-    mapOf(ChannelID.PRIMARY to "primary_notification_channel")
+    mapOf(ChannelID.TEST to "test_notification_channel")
 }
