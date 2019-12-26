@@ -1,24 +1,28 @@
 language: android
-
+dist: trusty
+env:
+  global:
+    - ANDROID_TARGET=android-22
+    - ANDROID_ABI=armeabi-v7a
 android:
   components:
     - tools
+    - platform-tools
     - build-tools-29.0.2
     - android-29
-    - extra-android-m2repository
-    - android-22
-    - sys-img-armeabi-v7a-android-22
-
-jdk:
-  - oraclejdk8
-
+    - extra
+    - $ANDROID_TARGET
+    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - ./gradlew build jacocoTestReport assembleAndroidTest
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
   - ./gradlew connectedCheck
-  - ./gradlew test
-
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - bash <(curl -s https://codecov.io/bash) -t 03aeb853-a36d-468c-b544-629f62583f43
